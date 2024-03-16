@@ -12,4 +12,4 @@ class Calculator():
         return self.a*self.b
    
     def div(self):
-        return self.a/self.b1
+        return self.a/self.b12
