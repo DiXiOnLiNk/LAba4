@@ -30,26 +30,3 @@ class Calculator():
 
     def lcm(self):
         return abs(self.a * self.b) // self.gcd()
-
-a = float(input("Введіть перше число: "))
-b = float(input("Введіть друге число: "))
-operation = input("Введіть операцію (+, -, *, /, **, gcd, lcm): ")
-
-calc = Calculator(a, b)
-
-if operation == '+':
-    print("Результат додавання:", calc.add())
-elif operation == '-':
-    print("Результат віднімання:", calc.sub())
-elif operation == '*':
-    print("Результат множення:", calc.mul())
-elif operation == '/':
-    print("Результат ділення:", calc.div())
-elif operation == '**':
-    print("Результат піднесення до степеня:", calc.power())
-elif operation == 'gcd':
-    print("Найбільший спільний дільник:", calc.gcd())
-elif operation == 'lcm':
-    print("Найменше спільне кратне:", calc.lcm())
-else:
-    print("Невідома операція")
