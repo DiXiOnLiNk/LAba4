@@ -21,9 +21,16 @@ class Calculator():
     def power(self):
         return self.a ** self.b if self.b != 0 else 1
 
+    def gcd(self):
+        x = self.a
+        y = self.b
+        while y != 0:
+            x, y = y, x % y
+        return abs(x)
+
 a = float(input("Введіть перше число: "))
 b = float(input("Введіть друге число: "))
-operation = input("Введіть операцію (+, -, *, /, **): ")
+operation = input("Введіть операцію (+, -, *, /, **, gcd): ")
 
 calc = Calculator(a, b)
 
@@ -37,5 +44,7 @@ elif operation == '/':
     print("Результат ділення:", calc.div())
 elif operation == '**':
     print("Результат піднесення до степеня:", calc.power())
+elif operation == 'nsd':
+    print("Найбільший спільний дільник:", calc.gcd())
 else:
     print("Невідома операція")
