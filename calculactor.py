@@ -28,9 +28,12 @@ class Calculator():
             x, y = y, x % y
         return abs(x)
 
+    def lcm(self):
+        return abs(self.a * self.b) // self.gcd()
+
 a = float(input("Введіть перше число: "))
 b = float(input("Введіть друге число: "))
-operation = input("Введіть операцію (+, -, *, /, **, gcd): ")
+operation = input("Введіть операцію (+, -, *, /, **, gcd, lcm): ")
 
 calc = Calculator(a, b)
 
@@ -44,7 +47,10 @@ elif operation == '/':
     print("Результат ділення:", calc.div())
 elif operation == '**':
     print("Результат піднесення до степеня:", calc.power())
-elif operation == 'nsd':
+elif operation == 'gcd':
     print("Найбільший спільний дільник:", calc.gcd())
+elif operation == 'lcm':
+    print("Найменше спільне кратне:", calc.lcm())
 else:
     print("Невідома операція")
+ 
