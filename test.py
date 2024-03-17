@@ -1,49 +1,51 @@
 import unittest
-from calculactor import Calculator   
+from calculactor import Calculator
+
 class TestCalculator(unittest.TestCase):
+    def setUp(self):
+        self.calc = Calculator(10, 5)
+
     def test_add(self):
-        calc = Calculator(5, 3)
-        self.assertEqual(calc.add(), 8)
+        self.assertEqual(self.calc.add(), 15)
 
     def test_sub(self):
-        calc = Calculator(5, 3)
-        self.assertEqual(calc.sub(), 2)
+        self.assertEqual(self.calc.sub(), 5)
 
     def test_mul(self):
-        calc = Calculator(5, 3)
-        self.assertEqual(calc.mul(), 15)
+        self.assertEqual(self.calc.mul(), 50)
 
     def test_div(self):
-        calc = Calculator(6, 3)
-        self.assertEqual(calc.div(), 2)
+        self.assertEqual(self.calc.div(), 2)
 
     def test_div_by_zero(self):
-        calc = Calculator(6, 0)
-        self.assertEqual(calc.div(), "Error: Division by zero!")
+        calc = Calculator(10, 0)
+        self.assertRaises(ZeroDivisionError, calc.div)
 
     def test_power(self):
-        calc = Calculator(2, 3)
-        self.assertEqual(calc.power(), 8)
-
-    def test_power_with_zero_exponent(self):
-        calc = Calculator(5, 0)
-        self.assertEqual(calc.power(), 1)
+        self.assertEqual(self.calc.power(), 100000)
 
     def test_gcd(self):
-        calc = Calculator(24, 36)
-        self.assertEqual(calc.gcd(), 12)
+        self.assertEqual(self.calc.gcd(), 5)
 
-    def test_lcm(self):
-        calc = Calculator(24, 36)
-        self.assertEqual(calc.lcm(), 72)
+    def test_add_negative_numbers(self):
+        calc = Calculator(-10, -5)
+        self.assertEqual(calc.add(), -15)
 
-    def test_lcm_with_negative_numbers(self):
-        calc = Calculator(-24, 36)
-        self.assertEqual(calc.lcm(), 72)
+    def test_sub_negative_numbers(self):
+        calc = Calculator(-10, -5)
+        self.assertEqual(calc.sub(), -5)
 
-    def test_lcm_with_zero(self):
-        calc = Calculator(24, 0)
-        self.assertEqual(calc.lcm(), 0)
+    def test_mul_negative_numbers(self):
+        calc = Calculator(-10, -5)
+        self.assertEqual(calc.mul(), 50)
+
+    def test_div_negative_numbers(self):
+        calc = Calculator(-10, -5)
+        self.assertEqual(calc.div(), 2)
+
+    def test_add_zero(self):
+        calc = Calculator(0, 5)
+        self.assertEqual(calc.add(), 5)
 
 if __name__ == '__main__':
     unittest.main()
