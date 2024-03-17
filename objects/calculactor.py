@@ -1,56 +1,51 @@
-class Calculator():
-    def __init__(self,a,b):
-        self.a=a
-        self.b=b
-    
-    def add(self):
-        return  self.a + self.b
-   
-    def sub(self):
-        return self.a-self.b
+import unittest
+from calculactor import Calculator
 
-    def mul(self):
-        return self.a*self.b
-   
-    def div(self):
-        if self.b != 0:
-            return self.a/self.b
-        else:
-            return "Error: Division by zero!"
+class TestCalculator(unittest.TestCase):
+    def setUp(self):
+        self.calc = Calculator(10, 5)
 
-    def power(self):
-        return self.a ** self.b if self.b != 0 else 1
+    def test_add(self):
+        self.assertEqual(self.calc.add(), 15)
 
-    def gcd(self):
-        x = self.a
-        y = self.b
-        while y != 0:
-            x, y = y, x % y
-        return abs(x)
+    def test_sub(self):
+        self.assertEqual(self.calc.sub(), 5)
 
-    def lcm(self):
-        return abs(self.a * self.b) // self.gcd()
+    def test_mul(self):
+        self.assertEqual(self.calc.mul(), 50)
 
-a = float(input("Введіть перше число: "))
-b = float(input("Введіть друге число: "))
-operation = input("Введіть операцію (+, -, *, /, **, gcd, lcm): ")
+    def test_div(self):
+        self.assertEqual(self.calc.div(), 2)
 
-calc = Calculator(a, b)
+    def test_div_by_zero(self):
+        calc = Calculator(10, 0)
+        self.assertRaises(ZeroDivisionError, calc.div)
 
-if operation == '+':
-    print("Результат додавання:", calc.add())
-elif operation == '-':
-    print("Результат віднімання:", calc.sub())
-elif operation == '*':
-    print("Результат множення:", calc.mul())
-elif operation == '/':
-    print("Результат ділення:", calc.div())
-elif operation == '**':
-    print("Результат піднесення до степеня:", calc.power())
-elif operation == 'gcd':
-    print("Найбільший спільний дільник:", calc.gcd())
-elif operation == 'lcm':
-    print("Найменше спільне кратне:", calc.lcm())
-else:
-    print("Невідома операція")
- 
+    def test_power(self):
+        self.assertEqual(self.calc.power(), 100000)
+
+    def test_gcd(self):
+        self.assertEqual(self.calc.gcd(), 5)
+
+    def test_add_negative_numbers(self):
+        calc = Calculator(-10, -5)
+        self.assertEqual(calc.add(), -15)
+
+    def test_sub_negative_numbers(self):
+        calc = Calculator(-10, -5)
+        self.assertEqual(calc.sub(), -5)
+
+    def test_mul_negative_numbers(self):
+        calc = Calculator(-10, -5)
+        self.assertEqual(calc.mul(), 50)
+
+    def test_div_negative_numbers(self):
+        calc = Calculator(-10, -5)
+        self.assertEqual(calc.div(), 2)
+
+    def test_add_zero(self):
+        calc = Calculator(0, 5)
+        self.assertEqual(calc.add(), 5)
+
+if __name__ == '__main__':
+    unittest.main()

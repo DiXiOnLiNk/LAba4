@@ -1,6 +1,5 @@
 import unittest
-from calculactor import Calculator  # Припускаю, що клас Calculator знаходиться в файлі calculator.py
-
+from calculactor import Calculator   
 class TestCalculator(unittest.TestCase):
     def test_add(self):
         calc = Calculator(5, 3)
